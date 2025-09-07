@@ -1,5 +1,3 @@
-// frontend/components/DailyBite.tsx (MVP)
-
 'use client'
 import { useEffect, useState } from 'react'
 import { ingestText, submitDrill } from '../lib/api'
@@ -47,5 +45,3 @@ export default function DailyBite(){
     </div>
   )
 }
-
-

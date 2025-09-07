@@ -1,7 +1,5 @@
-## backend/app/schemas.py
-
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any
+from typing import Optional, Dict, Any
 
 class IngestText(BaseModel):
     user_id: str
@@ -27,5 +25,3 @@ class DailyBite(BaseModel):
     warmup: DailyBiteItem
     drill: DailyBiteItem
     roleplay: DailyBiteItem
-
-

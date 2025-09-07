@@ -1,19 +1,15 @@
-
-## backend/app/models.py
-
-from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, Text, Boolean, Float
+from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, Text, Float
 from sqlalchemy.dialects.postgresql import ARRAY
-from sqlalchemy.orm import relationship
 from pgvector.sqlalchemy import Vector
 from datetime import datetime
-from .db import Base
+from ..db import Base
 
 class User(Base):
     __tablename__ = "users"
     id = Column(String, primary_key=True)
     cefr_target = Column(String, default="C1")
     tone_preference = Column(String, default="spicy")
-    consent_sources = Column(ARRAY(String), default=[])  # e.g., ["clipboard", "uploads"]
+    consent_sources = Column(ARRAY(String), default=[])
 
 class Source(Base):
     __tablename__ = "sources"
@@ -32,7 +28,8 @@ class Utterance(Base):
     lang = Column(String, default="fr")
     ts = Column(DateTime, default=datetime.utcnow)
     context_meta = Column(JSON, default={})
-    embedding = Column(Vector(1536))
+    # 3072 dims for text-embedding-3-large
+    embedding = Column(Vector(3072))
 
 class Error(Base):
     __tablename__ = "errors"
@@ -80,5 +77,3 @@ class Event(Base):
     type = Column(String)
     payload = Column(JSON)
     ts = Column(DateTime, default=datetime.utcnow)
-
-
