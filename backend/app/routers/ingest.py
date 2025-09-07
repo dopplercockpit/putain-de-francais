@@ -4,7 +4,7 @@ from ..schemas import IngestText, IngestAudio
 from ..models import Utterance, Drill
 from ..services.llm import diagnose_and_create_drills
 from ..services.stt import transcribe
-from ..db import get_db
+from ...db import get_db
 from datetime import datetime
 import uuid
 

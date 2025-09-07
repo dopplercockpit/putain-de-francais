@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ..db import get_db
+from ...db import get_db
 from ..schemas import DailyBite
 from ..services.llm import generate_daily_bite
 
