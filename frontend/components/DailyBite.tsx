@@ -4,27 +4,29 @@ import { ingestText, submitDrill } from '../lib/api'
 
 export default function DailyBite(){
   const user_id = 'josh'
-  const [warmup,setWarmup] = useState<string>('')
-  const [prompt,setPrompt] = useState<string>('')
-  const [answer,setAnswer] = useState<string>('')
-  const [drillId,setDrillId] = useState<string>('')
-
-  useEffect(() => {
-    setWarmup('Bonjour, je souhaiterais prendre rendez-vous.')
-    setPrompt('Je vais ___ médecin.')
-    setAnswer('')
-    setDrillId('d1')
-  }, [])
+  const [warmup,setWarmup] = useState('Bonjour, je souhaiterais prendre rendez-vous.')
+  const [prompt,setPrompt] = useState('Je vais ___ médecin.')
+  const [answer,setAnswer] = useState('')
+  const [drillId,setDrillId] = useState<string | null>(null)
 
   async function check(){
+    if(!drillId){ alert('Create a drill first (hit Roast This).'); return }
     const quality = (answer.trim().toLowerCase() === 'chez le') ? 5 : 2
     const res = await submitDrill({ user_id, drill_id: drillId, quality, response: { answer } })
-    alert(`Next due in ${res.interval_days} days`)
+    alert(`Saved. Next due in ${res.interval_days} days`)
   }
 
   async function roastThis(){
-    await ingestText(user_id, 'Bonjour, je veux un rendez-vous avec la médecin demain svp.', { mode: 'roast' })
-    alert('Roasted. Check backend logs for now.')
+    const text = 'Bonjour, je veux un rendez-vous avec la médecin demain svp.'
+    const res = await ingestText(user_id, text, { mode: 'roast' })
+    if (res?.drills?.length) {
+      setDrillId(res.drills[0])
+      // optional: adapt the prompt to match the generated drill
+      setPrompt('Je vais ___ médecin.')
+      alert('Drill created. Now answer it and press Check.')
+    } else {
+      alert('No drill returned 🤨')
+    }
   }
 
   return (
