@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ...db import get_db
-from ..schemas import DailyBite
-from ..services.llm import generate_daily_bite
+from app.db import get_db
+from app.schemas import DailyBite
+from app.services.llm import generate_daily_bite
 
 router = APIRouter(prefix="", tags=["daily"])
 

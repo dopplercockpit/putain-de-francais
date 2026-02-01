@@ -2,12 +2,12 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from ..services.conversation_engine import (
+from app.services.conversation_engine import (
     end_conversation,
     process_user_response,
     start_conversation,
 )
-from ...db import get_db
+from app.db import get_db
 
 router = APIRouter(prefix="/conversation", tags=["conversation"])
 

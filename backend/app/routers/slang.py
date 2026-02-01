@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from ..schemas import SlangUsageCheckRequest
-from ..services.slang_teacher import SlangTeacher
-from ...db import get_db
+from app.schemas import SlangUsageCheckRequest
+from app.services.slang_teacher import SlangTeacher
+from app.db import get_db
 
 router = APIRouter(prefix="/slang", tags=["slang"])
 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from ..db import Base, engine, SessionLocal
+from app.db import Base, engine, SessionLocal
 from .routers import ingest, drills, sessions, progress, daily, context, slang, conversation
 from .services.slang_teacher import seed_slang_if_empty
 

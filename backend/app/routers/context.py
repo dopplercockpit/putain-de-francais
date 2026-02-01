@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from ..schemas import ContextAnalysisRequest
-from ..services.context_analyzer import analyze_contextual_fit
-from ...db import get_db
+from app.schemas import ContextAnalysisRequest
+from app.services.context_analyzer import analyze_contextual_fit
+from app.db import get_db
 
 router = APIRouter(prefix="/context", tags=["context"])
 

@@ -3,7 +3,7 @@ import uuid
 
 from sqlalchemy.orm import Session
 
-from ..models import ContextualUtterance
+from app.models import ContextualUtterance
 from .openai_client import responses_json
 
 

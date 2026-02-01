@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional
 
 from openai import OpenAI
 
-from ..core.config import OPENAI_API_KEY, OPENAI_TEXT_MODEL
+from app.core.config import OPENAI_API_KEY, OPENAI_TEXT_MODEL
 
 _client: Optional[OpenAI] = None
 

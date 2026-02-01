@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from ..models import SlangExpression, UserSlangProgress
+from app.models import SlangExpression, UserSlangProgress
 from .openai_client import responses_json
 
 

@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from sqlalchemy.orm import Session
-from ..schemas import IngestText, IngestAudio
-from ..models import Utterance, Drill
-from ..services.llm import analyze_utterance, generate_utterance_drills
-from ..services.stt import transcribe, transcribe_upload
-from ...db import get_db
+from app.schemas import IngestText, IngestAudio
+from app.models import Utterance, Drill
+from app.services.llm import analyze_utterance, generate_utterance_drills
+from app.services.stt import transcribe, transcribe_upload
+from app.db import get_db
 from datetime import datetime
 import json
 import uuid

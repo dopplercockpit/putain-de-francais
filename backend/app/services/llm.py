@@ -1,5 +1,3 @@
-## backend/app/services/llm.py
-
 from typing import Any, Dict, List
 
 from .openai_client import responses_json

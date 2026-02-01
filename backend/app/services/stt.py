@@ -1,12 +1,10 @@
-## backend/app/services/stt.py
-
 import io
 from typing import Optional
 
 import httpx
 from fastapi import UploadFile
 
-from ..core.config import OPENAI_TRANSCRIBE_MODEL
+from app.core.config import OPENAI_TRANSCRIBE_MODEL
 from .openai_client import get_openai_client
 
 # Transcriptions support whisper-1 and gpt-4o*-transcribe models with a 25 MB file limit.

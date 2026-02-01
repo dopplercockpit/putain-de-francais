@@ -1,10 +1,8 @@
-## backend/app/routers/progress.py
-
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from ...db import get_db
-from ..models import Error, Drill, Utterance
+from app.db import get_db
+from app.models import Error, Drill, Utterance
 from datetime import datetime, timedelta
 
 router = APIRouter(prefix="/progress", tags=["progress"])

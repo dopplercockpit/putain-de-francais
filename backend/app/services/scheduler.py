@@ -1,5 +1,3 @@
-## backend/app/services/scheduler.py (SM‑2 lite)
-
 from datetime import datetime, timedelta
 
 def next_due(ease: float, interval: int, quality: int):

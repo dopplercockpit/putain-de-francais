@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from ..models import ConversationSession, ConversationTurn
+from app.models import ConversationSession, ConversationTurn
 from .openai_client import responses_json
 
 

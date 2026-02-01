@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from ..schemas import DrillAnswer
-from ...db import get_db
-from ..models import Drill
-from ..services.scheduler import schedule_from
+from app.schemas import DrillAnswer
+from app.db import get_db
+from app.models import Drill
+from app.services.scheduler import schedule_from
 from datetime import datetime
 
 router = APIRouter(prefix="/submit", tags=["drills"])

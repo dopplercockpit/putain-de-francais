@@ -3,10 +3,10 @@
 ## Local Setup
 
 ```
-# Start services
+# Start services (requires OPENAI_API_KEY in root .env or shell env)
 docker compose up --build
 
-# Frontend dev server
+# Frontend dev server (optional if running docker frontend)
 cd frontend
 npm install
 npm run dev
@@ -18,6 +18,9 @@ docker compose down -v
 ## Quick Start
 
 ```
+cp .env.example .env
+## Add OPENAI_API_KEY or export it in your shell
+
 cp backend/.env.example backend/.env
 # Edit keys
 
