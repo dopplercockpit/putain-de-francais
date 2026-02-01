@@ -1,8 +1,8 @@
 ## backend/app/services/llm.py (stubs)
 
-import os, httpx
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-PRIMARY_MODEL = os.getenv("PRIMARY_MODEL", "gpt-4o-mini")
+import httpx
+
+from ..core.config import OPENAI_API_KEY, OPENAI_TEXT_MODEL
 
 async def diagnose_and_create_drills(text: str, context: dict | None = None) -> dict:
     # Placeholder — call your LLM with a tightly-scoped system prompt
