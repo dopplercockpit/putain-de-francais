@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from ..db import Base, engine
-from .routers import ingest, drills, sessions, progress, daily
+from ..db import Base, engine, SessionLocal
+from .routers import ingest, drills, sessions, progress, daily, context, slang, conversation
+from .services.slang_teacher import seed_slang_if_empty
 
 app = FastAPI(title="Putain de Français API", version="0.2")
 
@@ -24,6 +25,18 @@ app.include_router(drills.router)
 app.include_router(sessions.router)
 app.include_router(progress.router)
 app.include_router(daily.router)
+app.include_router(context.router)
+app.include_router(slang.router)
+app.include_router(conversation.router)
+
+
+@app.on_event("startup")
+def seed_slang() -> None:
+    db = SessionLocal()
+    try:
+        seed_slang_if_empty(db)
+    finally:
+        db.close()
 
 @app.get("/")
 def root():

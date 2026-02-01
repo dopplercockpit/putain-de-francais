@@ -77,3 +77,65 @@ class Event(Base):
     type = Column(String)
     payload = Column(JSON)
     ts = Column(DateTime, default=datetime.utcnow)
+
+class Context(Base):
+    __tablename__ = "contexts"
+    id = Column(String, primary_key=True)
+    name = Column(String)
+    formality_level = Column(Integer)
+    typical_phrases = Column(ARRAY(String))
+    avoid_phrases = Column(ARRAY(String))
+    cultural_notes = Column(JSON)
+
+class ContextualUtterance(Base):
+    __tablename__ = "contextual_utterances"
+    id = Column(String, primary_key=True)
+    utterance_id = Column(String, ForeignKey("utterances.id"))
+    context_id = Column(String, ForeignKey("contexts.id"))
+    appropriateness_score = Column(Float)
+    suggested_alternative = Column(Text)
+    issues = Column(JSON)
+
+class SlangExpression(Base):
+    __tablename__ = "slang_expressions"
+    id = Column(String, primary_key=True)
+    expression = Column(String)
+    literal_meaning = Column(String)
+    english_equivalent = Column(String)
+    formality_level = Column(Integer)
+    age_demographic = Column(String)
+    region = Column(String)
+    usage_frequency = Column(String)
+    example_sentences = Column(ARRAY(String))
+    avoid_contexts = Column(ARRAY(String))
+
+class UserSlangProgress(Base):
+    __tablename__ = "user_slang_progress"
+    id = Column(String, primary_key=True)
+    user_id = Column(String, ForeignKey("users.id"))
+    expression_id = Column(String, ForeignKey("slang_expressions.id"))
+    exposure_count = Column(Integer, default=0)
+    successful_usage = Column(Integer, default=0)
+    last_practiced = Column(DateTime)
+    confidence_score = Column(Float)
+
+class ConversationSession(Base):
+    __tablename__ = "conversation_sessions"
+    id = Column(String, primary_key=True)
+    user_id = Column(String, index=True)
+    scenario_key = Column(String)
+    user_level = Column(String)
+    corrections_mode = Column(String)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    ended_at = Column(DateTime, nullable=True)
+
+class ConversationTurn(Base):
+    __tablename__ = "conversation_turns"
+    id = Column(String, primary_key=True)
+    session_id = Column(String, ForeignKey("conversation_sessions.id"))
+    turn_index = Column(Integer)
+    speaker = Column(String)
+    text = Column(Text)
+    correction = Column(Text, nullable=True)
+    meta = Column(JSON, default={})
+    created_at = Column(DateTime, default=datetime.utcnow)
